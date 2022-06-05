@@ -11,15 +11,17 @@ const Menu = () => {
 
 
     const refContainer = useRef();
-    const [Open, setOpen] = useState('none');
+    const [Open, setOpen] = useState(true);
 
 
     const handleClick = () => {
-        if(Open == 'none'){
-        setOpen('block')
+        if(!Open){
+            setOpen(!Open)
+        refContainer.current.style.display = "block"
         gsap.to(refContainer.current,{duration: 3.5, ease: "power3.out",opacity:1});
        }else{
-        setOpen('none')
+        setOpen(!Open)
+        refContainer.current.style.display = "none"
         gsap.to(refContainer.current,{duration: 2.5, ease: "power3.out",opacity:0});
        }
     }
@@ -33,7 +35,7 @@ const Menu = () => {
           <FaAlignJustify style={{color:"#f0ffff"}}/>
       </BarsMenu>
 
-   <ContainerMenu ref={refContainer} style={{display:Open}}>
+   <ContainerMenu ref={refContainer} style={{display:refContainer}}>
        <ListaMenu>
            <ContLista>Inicio</ContLista>
            <ContLista>Contacto</ContLista>
